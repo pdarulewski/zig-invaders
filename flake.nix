@@ -7,7 +7,6 @@
   };
 
   outputs = {
-    self,
     nixpkgs,
     flake-utils,
     ...
@@ -15,14 +14,19 @@
     flake-utils.lib.eachDefaultSystem (
       system: let
         pkgs = nixpkgs.legacyPackages.${system};
-
       in {
         devShells.default = pkgs.mkShell {
-          packages = [
-            pkgs.zig
-            pkgs.zig-zlint
-            pkgs.zls
-          ];
+          packages =
+            [
+              pkgs.alejandra
+              pkgs.nil
+              pkgs.zig
+              pkgs.zig-zlint
+              pkgs.zls
+            ]
+            ++ pkgs.lib.optionals pkgs.stdenv.isDarwin [
+              pkgs.apple-sdk_14
+            ];
         };
       }
     );

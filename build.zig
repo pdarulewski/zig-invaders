@@ -97,7 +97,7 @@ pub fn build(b: *std.Build) void {
     exe.root_module.addImport("raygui", raygui);
 
     if (target.result.os.tag == .macos) {
-        const sdk = "/nix/store/0p9q77zfnr32pmql2j2qb1had4wkq06m-apple-sdk-14.4/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk";
+        const sdk = "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk";
         const frameworks = b.fmt("{s}/System/Library/Frameworks", .{sdk});
         const includes = b.fmt("{s}/usr/include", .{sdk});
         const libs = b.fmt("{s}/usr/lib", .{sdk});
